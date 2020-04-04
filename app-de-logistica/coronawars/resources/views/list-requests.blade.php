@@ -44,8 +44,14 @@
                             @endforeach
                           </div>                            
                       </div>            
-                      @if(Auth::user()->hasRole('superadministrator') || Auth::user()->id == Request::input('deliverer') )        
-                      <a href="#" onclick="$('form').attr('action','{{route('mark-as-delivered')}}');$('form').submit()" type="button" class="btn btn-secondary mr-2" aria-haspopup="true" aria-expanded="false">{{__('Mark as delivered')}}</a>
+                      @if(Auth::user()->hasRole('superadministrator|deliverer') || Auth::user()->id == Request::input('deliverer') )        
+                      <div class="btn-group mr-2" role="group">
+                        <a href="{{route('list-requests-by-deliverer',['deliverer'=>Auth::user()->id])}}" type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"><i class="fa fas fa-user"></i> {{__('Show only mine')}}</a>
+                        @if(Route::currentRouteName()=="list-requests-by-deliverer" && (Auth::user()->hasRole('superadministrator') || Auth::user()->id == Request::input('deliverer')))
+                        <a href="#" type="button" onclick="window.print()" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"><i class="fa fas fa-print"></i> {{__('Print')}}</a>
+                        <a href="#" onclick="$('form').attr('action','{{route('mark-as-delivered')}}');$('form').submit()" type="button" class="btn btn-info" aria-haspopup="true" aria-expanded="false"><i class="fa fas fa-check"></i> {{__('Mark as delivered')}}</a>
+                        @endif
+                      </div>
                       @endif
                     </div>
 

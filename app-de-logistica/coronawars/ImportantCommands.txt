@@ -1,2 +1,4 @@
 C:\wamp64\bin\php\php7.3.12\php.exe artisan translatable:export pt
 C:\wamp64\bin\php\php7.3.12\php.exe artisan vendor:publish --tag="laratrust"
+https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard
+https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard

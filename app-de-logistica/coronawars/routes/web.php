@@ -20,7 +20,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::middleware(['verified'])->group(function(){
+Route::middleware(['auth'])->group(function(){
 	Route::get('/request-masks',function(){return view('request-masks');})->name('request-masks');
 	Route::post('/request-masks','MaskRequestController@post')->name('post-request-mask');
 });
@@ -35,5 +35,5 @@ Route::group(['middleware' => ['role:superadministrator|deliverer']], function()
 
 Route::get('/show-statistics','MaskRequestController@statistics')->name('show-statistics');
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 

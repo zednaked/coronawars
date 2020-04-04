@@ -13,6 +13,7 @@ class MaskRequestMigration extends Migration
      */
     public function up()
     {
+        Schema::drop('MaskRequest');
         Schema::create('MaskRequest', function (Blueprint $table) {
             //
             $table->id();
@@ -29,13 +30,14 @@ class MaskRequestMigration extends Migration
             $table->integer('masks')->nullable(false);
             $table->integer('shields')->nullable(true);
             $table->timestamps();
+            /*
             $table->foreign('requested_by_user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreign('delivered_by_user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('to_be_delivered_by_user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
+                ->onUpdate('cascade')->onDelete('cascade');*/
         });
     }
 

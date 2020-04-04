@@ -38,6 +38,8 @@
     "Phone number": "Telefone",
     "Phone": "Fone",
     "Please confirm your password before continuing.": "Confirme sua senha antes de continuar.",
+    "Please click the button below to verify your email address.":"Por favor, clique no botão abaixo para verificar seu e-mail e prosseguir com o pedido das máscaras.",
+    "If you did not create an account, no further action is required.":"Se você não pediu máscaras, você não precisa fazer nada.",
     "Reason": "Objetivo",
     "Regards": "Saudações",
     "Register": "Registrar",
@@ -59,7 +61,7 @@
     "Too Many Requests": "Muitas requisições",
     "Transparency is important. Check the number of requests we already received.": "Transparência é importante. Veja as estatísticas de pedidos que já recebemos, entregamos, além de algumas fotos.",
     "Unauthorized": "Não autorizado",
-    "Verify Your Email Address": "Verifique seu e-mail",
+    "Verify Your Email Address": "Peça suas máscaras após verificar seu e-mail",
     "We deliver to you for free. It's urgent we save lives.": "Entregamos máscaras para você de graça! Nossa recompensa é ter a mente tranquila por salvarmos vidas.",
     "Whoops!": "Whoops!",
     "So that we can bring the masks to you, we need some info. Please, fill the quick fields below so that we can proceed.":"Para que possamos entregar as máscaras para você, precisamos de algumas informações. Crie um cadastro rápido para darmos seguimento.",
@@ -77,5 +79,6 @@
     "Filter by deliverer": "Filtrar por entregador",
     "None":"Nenhum",
     "Date/Signature":"Data/Assinatura",
-    "Mark as delivered":"Marcar como entregue"
+    "Mark as delivered":"Marcar como entregue",
+    "Show only mine":"Mostrar minhas entregas"
 }

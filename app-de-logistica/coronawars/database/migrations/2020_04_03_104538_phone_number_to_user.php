@@ -15,7 +15,7 @@ class PhoneNumberToUser extends Migration
      */
     public function up()
     {
-        Schema::table('Users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
 			$table->string($this->column_name)->nullable(false);
         });
@@ -28,7 +28,7 @@ class PhoneNumberToUser extends Migration
      */
     public function down()
     {
-        Schema::table('Users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
 			$table->dropColumn($this->column_name);
         });
     }

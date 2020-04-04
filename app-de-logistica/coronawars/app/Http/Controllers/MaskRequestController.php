@@ -62,13 +62,14 @@ class MaskRequestController extends Controller
     public function assignWork(Request $request)
     {
         $arr = $request->all();
-        $maskRequests = DB::table('maskrequest')->whereNull('delivered_at')->whereIn('id',$arr['work_to_be_assigned'])->update(['to_be_delivered_by_user_id'=>$arr['deliverer']]);
+        $a = new MaskRequest;
+        $maskRequests = DB::table('MaskRequest')->whereNull('delivered_at')->whereIn('id',$arr['work_to_be_assigned'])->update(['to_be_delivered_by_user_id'=>$arr['deliverer']]);
         return redirect()->to('list-requests');
     }
 
     public function markAsDelivered(Request $request){
         $arr = $request->all();
-        $maskRequests = DB::table('maskrequest')->where('to_be_delivered_by_user_id',Auth::user()->id)->whereIn('id',$arr['work_to_be_assigned'])->update(['delivered_at'=>Carbon::now()]);
+        $maskRequests = DB::table('MaskRequest')->where('to_be_delivered_by_user_id',Auth::user()->id)->whereIn('id',$arr['work_to_be_assigned'])->update(['delivered_at'=>Carbon::now()]);
         return redirect()->to('list-requests');   
     }
 
