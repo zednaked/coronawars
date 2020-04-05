@@ -17,7 +17,7 @@ class MaskRequestController extends Controller
     	$arr['requested_by_user_id'] = Auth::user()->id;
     	MaskRequest::create($arr);
 
-        return redirect()->to(route('home'));
+        return redirect()->to(route('home-blink-contribute'));
     }
 
     public function listNotDelivered(){
@@ -45,11 +45,11 @@ class MaskRequestController extends Controller
         if( $delivered_at != NULL )
             $delivered_at=$delivered_at->diffForHumans();
     	$arr = [
-    		'requests_delivered' => MaskRequest::whereNotNull('delivered_at')->count(),
+    		'requests_delivered' => MaskRequest::whereNotNull('delivered_at')->sum('masks')+MaskRequest::whereNotNull('delivered_at')->sum('shields'),
     		/*
     		'last_delivery' => MaskRequest::latest('delivered_at')->delivered_at,
     		*/
-    		'requests_to_be_delivered' => MaskRequest::whereNull('delivered_at')->count(),
+    		'requests_to_be_delivered' => MaskRequest::whereNull('delivered_at')->sum('masks')+MaskRequest::whereNull('delivered_at')->sum('shields'),
     		'last_request' => MaskRequest::orderBy('id','desc')->select('created_at')->first()->created_at->diffForHumans(),
     		'last_delivery' => $delivered_at,
     		'mask_requests' => MaskRequest::inRandomOrder()->paginate(50),

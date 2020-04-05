@@ -21,7 +21,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+    <style>
+        a .card {
+            color: black !important;
+        }
+        @keyframes blinker {
+          50% {
+            opacity: 0;
+          }
+        }
+    </style>
     <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
@@ -95,6 +104,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
+                                    @if( Auth::user()->roles()->exists() )
+                                    <a class="dropdown-item" href="{{ route('list-users') }}">
+                                        {{ __('Manage users') }}
+                                    </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

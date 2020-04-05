@@ -16,8 +16,8 @@
         <div class="col-md-4">
             <a href="http://vaka.me/952315">
                 <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ __('Contribute') }}</h5>
+                  <div class="card-body @if(isset($callForAction) && $callForAction) bg-info @endif ">
+                    <h5 class="card-title" style="@if(isset($callForAction) && $callForAction) animation: blinker 1s linear 5; @endif">{{ __('Contribute') }}</h5>
                     <p class="card-text">{{__('If you like what we are doing, we are accepting donations to continue to do so. Our time is for free, but we need money to buy supplies. Help us!')}}</p>
                     <center><img style="width:300px" src="https://static.vakinha.com.br/uploads/vakinha/image/952315/mascara-protecao-caseira.jpg?ims=700x410" /></center>
                   </div>
