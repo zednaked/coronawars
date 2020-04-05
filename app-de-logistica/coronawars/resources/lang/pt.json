@@ -80,5 +80,11 @@
     "None":"Nenhum",
     "Date/Signature":"Data/Assinatura",
     "Mark as delivered":"Marcar como entregue",
-    "Show only mine":"Mostrar minhas entregas"
+    "Show only mine":"Mostrar minhas entregas",
+    "Manage users":"Gerenciar usuários",
+    "Help - How to use": "Ajuda - Como usar",
+    "Make deliverer":"Promover a entregador",
+    "Unmake deliverer":"Demover entregador",
+    "Make admin":"Promover para admin",
+    "Unmake admin":"Revogar admin" 
 }

@@ -108,6 +108,9 @@
                                     <a class="dropdown-item" href="{{ route('list-users') }}">
                                         {{ __('Manage users') }}
                                     </a>
+                                    <a class="dropdown-item" href="https://youtu.be/9WaS6nzdQhU" target="_blank">
+                                        {{ __('Help - How to use')}}
+                                    </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
