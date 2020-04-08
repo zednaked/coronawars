@@ -6,3 +6,6 @@ C:\Users\lauro\Downloads> cloud_sql_proxy.exe -instances=coronawars:southamerica
 C:\wamp64\www\app-de-logistica\coronawars>gcloud app deploy
 
 C:\wamp64\bin\php\php7.3.12\php artisan
+
+php artisan migrate
+php artisan passport:keys

@@ -11,6 +11,22 @@ use DB;
 
 class MaskRequestController extends Controller
 {
+    public function getCompanies(Request $request){
+        $maskrequest = MaskRequest::select(['name','phone_number','email','address'])->distinct()->where('reason','<>','personal');
+        $input = $request->input('q');
+
+        $maskrequest = $maskrequest->where(function($q) use ($input){
+            $q
+                ->where('name','like',$input.'%')
+                ->orWhere('email','like',$input.'%')
+                ->orWhere('phone_number','like',$input.'%')
+                ->orWhere('address','like',$input.'%');
+            }
+        );
+
+        return response()->json($maskrequest->get());
+    }
+
 	public function post(Request $request)
     {
     	$arr = $request->except('_token');

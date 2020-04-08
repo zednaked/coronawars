@@ -11,10 +11,10 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th style="text-align:center;">@lang('admin-users.authorize-user')</th>
-									<th>@lang('name')</th>
-									<th class="visible-sm visible-md visible-lg">@lang('email')</th>
-									<th class="visible-md visible-lg">@lang('created_at')</th>
+									<th style="text-align:center;">{{__('Authorization')}}</th>
+									<th>{{__('Name')}}</th>
+									<th class="visible-sm visible-md visible-lg">{{__('Email')}}</th>
+									<th class="visible-md visible-lg">{{__('Created at')}}</th>
 								</tr>
 							</thead>
 							<tbody>

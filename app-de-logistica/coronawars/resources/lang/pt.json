@@ -86,5 +86,11 @@
     "Make deliverer":"Promover a entregador",
     "Unmake deliverer":"Demover entregador",
     "Make admin":"Promover para admin",
-    "Unmake admin":"Revogar admin" 
+    "Unmake admin":"Revogar admin",
+    "Search for existing address and find it below": "Procurar por endereços existentes",
+    "Search for name, phone or email": "Procurar por nome, telefone, e-mail ou endereço",
+    "Refine below": "Refine sua busca aqui",
+    "* Only Curitiba for now.": "* Somente disponível em Curitiba.",
+    "Authorization": "Autorização",
+    "Created at": "Criado em"
 }
