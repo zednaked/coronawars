@@ -5,14 +5,22 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <a href="{{ route('request-masks') }}">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{__('Request masks')}}</h5>
-                    <p class="card-text">{{__('We deliver to you for free. It\'s urgent we save lives.')}}</p>                    
-                  </div>
-                </div>
-            </a>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{__('Make your own mask')}}</h5>
+                <p class="card-text">{{__('Below you can find two molds for your masks, the kids and adult versions. Print it and make your own mask')}}</p>
+                <a target="_blank" href="https://github.com/zednaked/coronawars/raw/master/molde%20mascara%20coronavirus%20KIDS.pdf" class="btn btn-primary">{{__('Kids version')}}</a>
+                <a target="_blank" href="https://github.com/zednaked/coronawars/raw/master/molde%20mascara%20coronavirus.pdf" class="btn btn-primary">{{__('Adult version')}}</a>                    
+              </div>
+            </div>
+            <br/>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{__('Request masks')}}</h5>
+                <p class="card-text">{{__('We deliver to you for free. It\'s urgent we save lives.')}}</p>   
+                <a href="{{ route('request-masks') }}" class="btn btn-danger">{{__('Request masks')}}</a>                  
+              </div>
+            </div>
         </div>
         <div class="col-md-4">
             <a href="http://vaka.me/952315">
@@ -26,32 +34,31 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a href="{{ route('show-statistics') }}">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ __('Show statistics') }}</h5>
-                    <p class="card-text">{{__('Transparency is important. Check the number of requests we already received.')}}</p>
-                  </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ __('Show statistics') }}</h5>
+                <p class="card-text">{{__('Transparency is important. Check the number of requests we already received.')}}</p>
+                <a class="btn btn-success" href="{{ route('show-statistics') }}">{{ __('Show statistics') }}</a>
+              </div>
+            </div>
+            <br/>
+            @if(Auth::check())
+            @if( Auth::user()->hasRole('superadministrator') || Auth::user()->hasRole('deliverer') )
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ __('List requests') }}</h5>
+                        <p class="card-text">{{__('If you are a deliverer or administrator, please, check here what are the orders we need to take.')}}</p>
+                        <a class="btn btn-warning" href="{{ route('list-requests') }}">{{ __('List requests') }}</a>
+
+                      </div>
+                    </div>
                 </div>
-            </a>
+            </div> 
+            @endif
+            @endif
         </div>
     </div>
-    <br/>
-    @if(Auth::check())
-    @if( Auth::user()->hasRole('superadministrator') || Auth::user()->hasRole('deliverer') )
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <a href="{{ route('list-requests') }}">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ __('List requests') }}</h5>
-                    <p class="card-text">{{__('If you are a deliverer or administrator, please, check here what are the orders we need to take.')}}</p>
-                  </div>
-                </div>
-            </a>
-        </div>
-    </div> 
-    @endif
-    @endif
 </div>
 @endsection

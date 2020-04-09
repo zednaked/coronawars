@@ -14,3 +14,5 @@ set DB_USERNAME=root
 
 php artisan migrate
 php artisan passport:keys
+"composer install --optimize-autoloader --no-dev",
+            

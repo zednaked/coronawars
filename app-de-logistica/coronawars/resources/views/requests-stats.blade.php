@@ -42,7 +42,7 @@
         @foreach($by_type as $t)
         <div class="col-md-4">
             <div class="card bg-default text-center">
-              <div class="card-header">
+              <div class="card-header" style="max-height: 48px;overflow: hidden;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
                 {{__($t->reason)}}
               </div>
               <div class="card-body">

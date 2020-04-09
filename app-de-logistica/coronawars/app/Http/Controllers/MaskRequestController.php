@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Cache;
 use Illuminate\Http\Request;
 use App\MaskRequest;
 use Auth;
@@ -11,6 +11,8 @@ use DB;
 
 class MaskRequestController extends Controller
 {
+    function index(){return view('request-masks');}
+    
     public function getCompanies(Request $request){
         $maskrequest = MaskRequest::select(['name','phone_number','email','address'])->distinct()->where('reason','<>','personal');
         $input = $request->input('q');
@@ -72,21 +74,25 @@ class MaskRequestController extends Controller
         return view('list-requests')->with(['mask_requests'=>$requests,'deliverers'=>$deliverers]);
     }
 
-    public function statistics(){
+    public function statistics(Request $request){
 
         $delivered_at = MaskRequest::orderBy('delivered_at','desc')->select('delivered_at')->first()->delivered_at;
         if( $delivered_at != NULL )
             $delivered_at=$delivered_at->diffForHumans();
     	$arr = [
-    		'requests_delivered' => MaskRequest::whereNotNull('delivered_at')->sum('masks')+MaskRequest::whereNotNull('delivered_at')->sum('shields'),
+    		'requests_delivered' => Cache::remember('requests_delivered', 3600, function () {
+                return MaskRequest::whereNotNull('delivered_at')->sum('masks')+MaskRequest::whereNotNull('delivered_at')->sum('shields');}),
     		/*
     		'last_delivery' => MaskRequest::latest('delivered_at')->delivered_at,
     		*/
-    		'requests_to_be_delivered' => MaskRequest::whereNull('delivered_at')->sum('masks')+MaskRequest::whereNull('delivered_at')->sum('shields'),
+    		'requests_to_be_delivered' => Cache::remember('requests_to_be_delivered', 3600, function () {
+                return MaskRequest::whereNull('delivered_at')->sum('masks')+MaskRequest::whereNull('delivered_at')->sum('shields');}),
     		'last_request' => MaskRequest::orderBy('id','desc')->select('created_at')->first()->created_at->diffForHumans(),
     		'last_delivery' => $delivered_at,
-    		'mask_requests' => MaskRequest::inRandomOrder()->paginate(50),
-    		'by_type' => MaskRequest::groupBy('reason')->selectRaw('sum(masks) as masks,sum(shields) as shields,reason')->get()
+    		'mask_requests' => Cache::remember('mask_requests'.($request->input('page') != NULL ? $request->input('page') : '1'), 3600, function () {
+                return MaskRequest::inRandomOrder()->paginate(50);}),
+    		'by_type' => Cache::remember('by_type', 3600, function () {
+                return MaskRequest::groupBy('reason')->selectRaw('sum(masks) as masks,sum(shields) as shields,reason')->get();})
     	];
 
     	return view('requests-stats')->with($arr);	
