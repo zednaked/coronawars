@@ -30,8 +30,8 @@ class SeamstressRequest extends Migration
         });
         Schema::table('MaskRequest', function (Blueprint $table) {
             //
-            $table->float('geo_lon');  
-            $table->float('geo_lat');  
+            $table->float('geo_lon',11,8)->nullable(true);  
+            $table->float('geo_lat',11,8)->nullable(true);  
         });
     }
 

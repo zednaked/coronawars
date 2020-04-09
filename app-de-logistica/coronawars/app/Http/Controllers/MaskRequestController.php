@@ -37,7 +37,12 @@ class MaskRequestController extends Controller
     }
 
     public function listNotDelivered(){
-        $requests = MaskRequest::whereNull('delivered_at')->orderBy('created_at')->paginate(50);
+
+        $requests = MaskRequest::whereNull('delivered_at')                            
+                            ->orderBy('geo_lon')
+                            ->orderBy('geo_lat')
+                            ->orderBy('created_at')
+                            ->paginate(50);
         $deliverers = User::whereRoleIs('superadministrator')->orWhereRoleIs('deliverer')->get();
 
         return view('list-requests')->with(['mask_requests'=>$requests,'deliverers'=>$deliverers]);
@@ -47,10 +52,22 @@ class MaskRequestController extends Controller
         $requests = MaskRequest::whereNull('delivered_at');
 
         if( $request->input('deliverer') != 0 )
-            $requests = $requests->where('to_be_delivered_by_user_id',$request->input('deliverer'))->orderBy('created_at')->paginate(50);
+            $requests = $requests
+                            ->where('to_be_delivered_by_user_id',$request->input('deliverer'))
+                            ->orderBy('geo_lon')
+                            ->orderBy('geo_lat')
+                            ->orderBy('created_at')->paginate(50);
         else
-            $requests = $requests->whereNull('to_be_delivered_by_user_id')->orWhere('to_be_delivered_by_user_id',0)->orderBy('created_at')->paginate(50);
-        $deliverers = User::whereRoleIs('superadministrator')->orWhereRoleIs('deliverer')->get();
+            $requests = $requests
+                            ->whereNull('to_be_delivered_by_user_id')
+                            ->orWhere('to_be_delivered_by_user_id',0)
+                            ->orderBy('geo_lon')
+                            ->orderBy('geo_lat')
+                            ->orderBy('created_at')
+                            ->paginate(50);
+        $deliverers = User::whereRoleIs('superadministrator')
+                            ->orWhereRoleIs('deliverer')
+                            ->get();
 
         return view('list-requests')->with(['mask_requests'=>$requests,'deliverers'=>$deliverers]);
     }
