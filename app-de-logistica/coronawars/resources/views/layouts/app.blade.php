@@ -68,6 +68,16 @@
                 @if(Auth::check())
                 @if( Auth::user()->hasRole('superadministrator') || Auth::user()->hasRole('deliverer') )
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('list-seamstresses')}}">
+                                        {{ __('List seamstresses')}}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('list-supply-request')}}">
+                                        {{ __('List supply requests')}}
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('list-requests') }}">
                                 {{ __('List requests') }}
                             </a>
@@ -107,6 +117,17 @@
                                     <a class="dropdown-item" href="{{ route('list-users') }}">
                                         {{ __('Manage users') }}
                                     </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{route('list-seamstresses')}}">1. 
+                                        {{ __('List seamstresses')}}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('list-supply-request')}}">2. 
+                                        {{ __('List supply requests')}}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('list-requests')}}">3. 
+                                        {{ __('List requests or assign work')}}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="https://youtu.be/9WaS6nzdQhU" target="_blank">
                                         {{ __('Help - How to use')}}
                                     </a>
