@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seamstress extends Model
 {
 	protected $table = 'seamstress';
-    protected $fillable = ['address','email','phone_number','name'];
+    protected $fillable = ['address','phone_number','name','geo_lon','geo_lat'];
     /*
     $table->string('address',1000);
     $table->float('geo_lon', 3, 8);  

@@ -8,12 +8,8 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('List of seamstresses') }}</div>
-
+                <div class="card-header">{{ __('List of requests') }}</div>
                 <div class="card-body">
-                    <div class="btn-group" role="group" >
-                      <a href="{{route('get-seamstress')}}" type="button" class="btn btn-primary">{{__('Create new seamstresser')}}</a>
-                    </div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -32,20 +28,17 @@
                             <th scope="col">{{__('Name')}}</th>
                             <th scope="col">{{__('Phone')}}</th>
                             <th scope="col">{{__('Address')}}</th>
-                            </tr>
+                            <th scope="col">{{__('Email')}}</th>
+                          </tr>
                         </thead>
                         <tbody>
                           @foreach($seamstresses as $seamstress)
-                          <tr>
-                              <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                  <a onclick="return confirm('{{__('Are you sure?')}}');" href="{{route('delete-seamstress',['id'=>$seamstress->id])}}" class="btn btn-danger" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fa fa-trash"></i></a>
-                                  <a href="{{route('get-seamstress',['seamstress_id'=>$seamstress->id])}}" data-toggle="tooltip" class="btn btn-light" title="{{__('Edit')}}"><i class="fa fa-pencil"></i></a>
-                                </div>
-                              </td>
+                          <tr id="table_row_{{$seamstress->id}}" style="cursor:pointer" onclick="document.location='{{route('get-seamstress',['seamstress_id'=>$seamstress->id])}}'">
+                              <td><a onclick="return confirm('{{__('Are you sure?')}}');" href="{{route('delete-seamstress',['id'=>$seamstress->id])}}" class="btn btn-danger" title="{{__('Delete')}}"><i class="fa fa-trash"></i></button></td>
                               <td>{{ $seamstress->name }}</td>
                               <td>{{ $seamstress->phone_number }}</td>
                               <td>{{ $seamstress->address }}</td>
+                              <td>{{ $seamstress->email }}</td>
                           </tr>
                           @endforeach
                         </tbody>

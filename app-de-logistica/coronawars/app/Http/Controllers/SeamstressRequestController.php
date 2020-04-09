@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\SeamstressRequest;
 use App\Seamstress;
 use App\SeamstressRequestConciliation;
@@ -16,27 +17,40 @@ class SeamstressRequestController extends Controller
             $request = new SeamstressRequest;
         else
             $request = SeamstressRequest::find($id);
+
         $seamstresses = Seamstress::all();
 
         return view('seamstress.seamstress-request')->with(['request'=>$request,'seamstresses'=>$seamstresses]);
     }
     public function list(Request $request){
 
-        $requests = SeamstressRequest::orderBy('delivered_at')->orderBy('created_at');
-
-        if($request->input('pendingConciliation') == true)
-            $requests = $requests
-                                ->whereNotNull('delivered_at')
-                                ->whereNull('archived_at');
-        else if($request->input('toBeDelivered') == true)
-            $requests = $requests->whereNull('delivered_at');
-        else if($request->input('onlyArchived') == true ) 
-            $requests = $requests->whereNotNull('archived_at');
-        else if($request->input('all') != true ) 
-            $requests = $requests->whereArchivedAt(NULL);
+        $requests = NULL;
+        if( $request->input('toBeDelivered') == true)
+        {
+            $requests = SeamstressRequest
+                            ::join('seamstress','seamstress.id','seamstress_request.seamstress_id')
+                            ->whereArchivedAt(NULL)
+                            ->whereNull('delivered_at')
+                            ->orderBy('geo_lon')
+                            ->orderBy('geo_lat')
+                            ->orderBy('delivered_at')
+                            ->orderBy('seamstress_request.created_at');
+        }
+        else{
+            $requests = SeamstressRequest::orderBy('delivered_at')->orderBy('created_at');
+            
+            if($request->input('pendingConciliation') == true)
+                $requests = $requests
+                                    ->whereNotNull('delivered_at')
+                                    ->whereNull('archived_at');
+            else if($request->input('onlyArchived') == true ) 
+                $requests = $requests->whereNotNull('archived_at');
+            else if($request->input('all') != true ) 
+                $requests = $requests->whereArchivedAt(NULL);
+        }
 
         $requests = $requests->paginate(50);
-
+        
         return view('seamstress.list-seamstress-request')->with(['requests'=>$requests]);
     }
 

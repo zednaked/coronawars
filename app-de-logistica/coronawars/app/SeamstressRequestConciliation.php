@@ -11,6 +11,6 @@ class SeamstressRequestConciliation extends Model
 	
     public function seamstress_request()
     {
-        return $this->belongsTo(SeamstressRequest::class);
+        return $this->belongsTo(SeamstressRequest::class,'id','seamstress_request_id');
     }
 }

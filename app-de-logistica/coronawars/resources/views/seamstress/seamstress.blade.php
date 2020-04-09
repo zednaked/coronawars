@@ -11,6 +11,32 @@
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.12/dist/js/i18n/defaults-pt_BR.min.js"></script>
 
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_KEY')}}&callback=initMap">
+</script>
+<script>
+var geocoder;
+  function initMap(){
+    geocoder = new google.maps.Geocoder();
+  }
+  function geocodeAddress() {
+        var address = $('#address').val();
+        address += $('#city_country').val();
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            $('#geo_lon').val(results[0].geometry.location.lng()); 
+            $('#geo_lat').val(results[0].geometry.location.lat()); 
+          } else {
+            $('#geo_lon').val(''); 
+            $('#geo_lat').val(''); 
+            @if( env('APP_DEBUG') ) 
+            console.log('Geocode was not successful for the following reason: ' + status);
+            @endif
+          }
+        });
+      }
+</script>
+
 @endsection
 
 @section('content')
@@ -38,7 +64,9 @@
                             <div class="col-lg-6">
                                 <label class="control-label" for="address">{{ __('Address') }}</label>  
                                 <div class="">
-                                    <input id="address" name="address" type="text" value="{{ $seamstress->address }}" class="form-control input-md" required>
+                                    <input id="address" name="address" type="text" value="{{ $seamstress->address }}" class="form-control input-md" required onblur="geocodeAddress()">
+                                    <input id="geo_lon" name="geo_lon" type="hidden" value="" class="form-control input-md">
+                                    <input id="geo_lat" name="geo_lat" type="hidden" value="" class="form-control input-md">
                                 </div>
                               </div>
                               <div class="col-lg-6">
@@ -68,17 +96,6 @@
                                 </div>
                               </div>
                               
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                  <div>
-                                      <label class="control-label" for="email">{{ __('E-mail') }}</label>  
-                                      <div class="">
-                                          <input id="email" name="email" type="text" class="form-control input-md" required value="{{$seamstress->email}}">
-                                      </div>
-                                  </div>
-                                </div>
                             </div>
                             <br/>
                         </fieldset>

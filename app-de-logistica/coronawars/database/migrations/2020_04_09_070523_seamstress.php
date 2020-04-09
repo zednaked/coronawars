@@ -17,9 +17,8 @@ class Seamstress extends Migration
         Schema::create('seamstress', function (Blueprint $table) {
             $table->increments('id');
             $table->string('address',1000);
-            $table->float('geo_lon')->nullable(true);  
-            $table->float('geo_lat')->nullable(true);  
-            $table->string('email',50);
+            $table->float('geo_lon',11,8)->nullable(true);  
+            $table->float('geo_lat',11,8)->nullable(true);  
             $table->string('phone_number',50);
             $table->string('name',50);
             $table->timestamps();

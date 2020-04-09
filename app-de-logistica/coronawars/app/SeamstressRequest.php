@@ -28,6 +28,6 @@ class SeamstressRequest extends Model
     }
     public function conciliations()
     {
-        return $this->hasMany(SeamstressRequestConciliation::class);
+        return $this->hasMany(SeamstressRequestConciliation::class,'seamstress_request_id','id');
     }
 }

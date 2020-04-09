@@ -25,23 +25,23 @@
                     @endif
 
                     <div class="d-print-none">
-                    <input type="hidden" id="deliverer" name="deliverer" value=""/>
-                    <br/><br/>
+                      <input type="hidden" id="deliverer" name="deliverer" value=""/>
+                      <br/><br/>
                     </div>
 
                     <table class="table table-striped table-hover" id="list">
                         <thead>
                           <tr>
-                            <th scope="col" class="d-print-none"></th>
-                            <th scope="col" class="d-print-none">{{__('Delivered at')}}</th>
-                            <th scope="col">{{__('To receive')}}</th>
-                            <th scope="col">{{__('Name')}}</th>
-                            <th scope="col">{{__('Phone')}}</th>
-                            <th scope="col">{{__('Address')}}</th>
-                            <th scope="col">{{__('Masks')}}</th>
-                            <th scope="col">{{__('Thread')}}</th>
-                            <th scope="col">{{__('Elastic')}}</th>
-                            <th scope="col">{{__('Other')}}</th>
+                            <th class="d-print-none"></th>
+                            <th class="d-print-none">{{__('Delivered at')}}</th>
+                            <th>{{__('To receive')}}</th>
+                            <th>{{__('Name')}}</th>
+                            <th>{{__('Phone')}}</th>
+                            <th>{{__('Address')}}</th>
+                            <th>{{__('Masks')}}</th>
+                            <th>{{__('Thread')}}</th>
+                            <th>{{__('Elastic')}}</th>
+                            <th>{{__('Other')}}</th>
                           </tr>
                         </thead>
                         <tbody>
