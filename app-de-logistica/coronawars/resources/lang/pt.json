@@ -20,6 +20,7 @@
     "Create\/update": "Criar\/atualizar",
     "Created at": "Criado em",
     "Critical business needs (producing food, public transport,...)": "Negócios críticos (produção de comida, transporte público,...)",
+    "critical_business": "Negócios críticos (produção de comida, transporte público,...)",
     "Date\/Signature": "Data\/Assinatura",
     "Delete": "Deletar",
     "Delivered at": "Entregue em",
@@ -38,6 +39,7 @@
     "Hello!": "Olá!",
     "Help - How to use": "Ajuda - Como usar",
     "Hospital needs": "Necessidades hospitalares",
+    "hospital": "Necessidades hospitalares",
     "How many masks were received?": "Quantas máscaras foram recebidas?",
     "If you are a deliverer or administrator, please, check here what are the orders we need to take.": "Se você é um entregador ou administrador, por favor, clique aqui para ver quais pedidos estão na fila.",
     "If you did not receive the email": "Se você não recebeu a requisição para validar seu e-mail",
@@ -71,6 +73,7 @@
     "pagination.previous": "Anterior",
     "Password": "Senha",
     "Pending conciliation": "Recebimento pendente",
+    "personal": "Necessidades pessoais (ou família)",
     "Personal needs": "Necessidades pessoais (ou família)",
     "Phone": "Fone",
     "Phone number": "Telefone",
@@ -116,5 +119,9 @@
     "Unmake deliverer": "Revogar entregador",
     "Verify Your Email Address": "Peça suas máscaras após verificar seu e-mail",
     "We deliver to you for free. It\\'s urgent we save lives.": "We deliver to you for free. It\\'s urgent we save lives.",
-    "Whoops!": "Whoops!"
+    "Whoops!": "Whoops!",
+    "Below you can find two molds for your masks, the kids and adult versions. Print it and make your own mask": "Abaixo você pode encontrar dois moldes de máscaras, um para crianças e outro para adultos. Imprima e faça sua própria máscara.",
+    "Make your own mask": "Faça sua própria máscara",
+    "Adult version": "Para adultos",
+    "Kids version": "Para crianças"
 }

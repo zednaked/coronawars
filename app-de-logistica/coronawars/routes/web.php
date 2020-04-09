@@ -13,19 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-Route::get('/home', function () {
-    return view('home');
-});
-Route::get('/call-for-action', function () {
-    return view('home',['callForAction'=>true]);
-})->name('home-blink-contribute');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
+
+Route::get('/call-for-action', 'HomeController@callforaction')->name('home-blink-contribute');
 
 Route::middleware(['auth'])->group(function(){
 
-	Route::get('/request-masks',function(){return view('request-masks');})->name('request-masks');
+	Route::get('/request-masks','MaskRequestController@index')->name('request-masks');
 	Route::post('/request-masks','MaskRequestController@post')->name('post-request-mask');
 
 	Route::middleware('role:superadministrator|deliverer')->group(	function() {
