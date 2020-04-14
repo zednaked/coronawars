@@ -22,6 +22,11 @@ class SeamstressRequestController extends Controller
 
         return view('seamstress.seamstress-request')->with(['request'=>$request,'seamstresses'=>$seamstresses]);
     }
+    public function delete($id){
+        SeamstressRequest::find($id)->delete();
+
+        return redirect()->route('list-supply-request');
+    }
     public function list(Request $request){
 
         $requests = NULL;
