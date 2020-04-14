@@ -10,22 +10,31 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
     });
     </script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        a .card {
+            color: black !important;
+        }
+        @keyframes blinker {
+          50% {
+            opacity: 0;
+          }
+        }
+    </style>
 	@yield('head')
 </head>
 <body>
@@ -58,6 +67,16 @@
                         </li>
                 @if(Auth::check())
                 @if( Auth::user()->hasRole('superadministrator') || Auth::user()->hasRole('deliverer') )
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('list-seamstresses')}}">
+                                        {{ __('List seamstresses')}}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('list-supply-request')}}">
+                                        {{ __('List supply requests')}}
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('list-requests') }}">
                                 {{ __('List requests') }}
@@ -94,6 +113,25 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
+                                    @if( Auth::user()->roles()->exists() )
+                                    <a class="dropdown-item" href="{{ route('list-users') }}">
+                                        {{ __('Manage users') }}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{route('list-seamstresses')}}">1. 
+                                        {{ __('List seamstresses')}}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('list-supply-request')}}">2. 
+                                        {{ __('List supply requests')}}
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('list-requests')}}">3. 
+                                        {{ __('List requests or assign work')}}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="https://youtu.be/9WaS6nzdQhU" target="_blank">
+                                        {{ __('Help - How to use')}}
+                                    </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -115,5 +153,15 @@
             @yield('content')
         </main>
     </div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{env('GOOGLE_ANALYTICS')}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{env('GOOGLE_ANALYTICS')}}');
+</script>
+
 </body>
 </html>

@@ -1,2 +1,18 @@
 C:\wamp64\bin\php\php7.3.12\php.exe artisan translatable:export pt
 C:\wamp64\bin\php\php7.3.12\php.exe artisan vendor:publish --tag="laratrust"
+https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard
+C:\Users\lauro\Downloads> cloud_sql_proxy.exe -instances=coronawars:southamerica-east1:coronawars=tcp:3306 -credential_file coronawars-fa0fa8bd1615.json
+
+set PYTHONIOENCODING=UTF-8
+
+C:\wamp64\www\app-de-logistica\coronawars>gcloud app deploy
+
+C:\wamp64\bin\php\php7.3.12\php artisan
+
+set DB_PASSWORD=copy from file
+set DB_USERNAME=root
+
+php artisan migrate
+php artisan passport:keys
+"composer install --optimize-autoloader --no-dev",
+            

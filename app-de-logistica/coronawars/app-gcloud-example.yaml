@@ -1,0 +1,51 @@
+runtime: php72
+
+runtime_config:
+  document_root: public
+
+handlers:
+- url: /(.*\.(gif|png|jpg|css|js))$
+  static_files: public/\1
+  upload: public/.*\.(gif|png|jpg|css|js)$
+
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
+
+env_variables:
+  ## Put production environment variables here.
+  APP_KEY: KEYHERE
+  GOOGLE_KEY: KEYHERE
+  APP_STORAGE: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  SESSION_DRIVER: cookie
+  APP_NAME: "Tudo pela vida"
+  APP_ENV: production
+  APP_DEBUG: false
+  APP_URL: http://coronawars.appspot.com/
+
+  LOG_CHANNEL: stack
+
+  DB_CONNECTION: mysql
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: coronawars
+  DB_USERNAME: root
+  DB_PASSWORD: KEYHERE
+  DB_SOCKET: "/cloudsql/coronawars:southamerica-east1:coronawars"
+
+  BROADCAST_DRIVER: log
+  CACHE_DRIVER: file
+  QUEUE_CONNECTION: sync
+  SESSION_LIFETIME: 35791394
+  GOOGLE_ANALYTICS: KEYHERE
+
+  PASSPORT_PRIVATE_KEY: |
+   -----BEGIN RSA PRIVATE KEY-----
+   KEYHERE
+   -----END RSA PRIVATE KEY-----
+  PASSPORT_PUBLIC_KEY: |
+   -----BEGIN PUBLIC KEY-----
+   KEYHERE
+   -----END PUBLIC KEY-----
