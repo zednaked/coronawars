@@ -16,6 +16,7 @@
 </script>
 <script>
 var geocoder;
+var isValidForm = false;
   function initMap(){
     geocoder = new google.maps.Geocoder();
   }
@@ -25,8 +26,11 @@ var geocoder;
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             $('#geo_lon').val(results[0].geometry.location.lng()); 
-            $('#geo_lat').val(results[0].geometry.location.lat()); 
+            $('#geo_lat').val(results[0].geometry.location.lat());
+            $('.alert.alert-danger').empty(); 
+            isValidForm = true;
           } else {
+            $('.alert.alert-danger').html('{{__('Location not found.')}}');
             $('#geo_lon').val(''); 
             $('#geo_lat').val(''); 
             @if( env('APP_DEBUG') ) 
@@ -36,6 +40,14 @@ var geocoder;
         });
       }
 </script>
+<style>
+  .alert.alert-danger:empty{
+    display:none;
+  }
+  .alert.alert-danger:not(:empty){
+    display:block;
+  }
+  </style>
 
 @endsection
 
@@ -54,27 +66,22 @@ var geocoder;
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <form class="form-horizontal" method="POST" action="{{ $seamstress != NULL && $seamstress->id >=1 ? route('post-seamstresses',['id'=>$seamstress->id]) : route('post-seamstresses') }}">
+                        <div class="alert alert-danger" role="alert"></div>
+                    
+                    <form class="form-horizontal" method="POST" action="{{ $seamstress != NULL && $seamstress->id >=1 ? route('post-seamstresses',['id'=>$seamstress->id]) : route('post-seamstresses') }}" onsubmit="if( !isValidForm ) { $('.alert.alert-danger').html('{{__('Invalid form.')}}');
+            return false; } return true;">
                         @csrf
                         <fieldset>
 
                         <div class="form-group">
                           <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="address">{{ __('Address') }}</label>  
                                 <div class="">
                                     <input id="address" name="address" type="text" value="{{ $seamstress->address }}" class="form-control input-md" required onblur="geocodeAddress()">
                                     <input id="geo_lon" name="geo_lon" type="hidden" value="" class="form-control input-md">
                                     <input id="geo_lat" name="geo_lat" type="hidden" value="" class="form-control input-md">
                                 </div>
-                              </div>
-                              <div class="col-lg-6">
-                                  <label class="control-label" for="city_country">{{ __('City and country') }}</label>  
-                                  <div class="">
-                                      <input id="city_country" name="city_country" type="text" readonly class="form-control input-md" required value="Curitiba, Brasil">
-                                      {{ __('* Only Curitiba for now.') }}
-                                  </div>
                               </div>
                             </div>
                             <br/>
