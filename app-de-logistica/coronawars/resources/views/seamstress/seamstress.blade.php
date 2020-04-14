@@ -19,6 +19,7 @@ var geocoder;
 var isValidForm = false;
   function initMap(){
     geocoder = new google.maps.Geocoder();
+    isValidForm = $('#geo_lon').val() !== "" && $('#geo_lat').val() !== "";
   }
   function geocodeAddress() {
         var address = $('#address').val();

@@ -25,6 +25,10 @@
                     <br/><br/>
                     </div>
 
+                    <div class="d-print-none">
+                    {{ $seamstresses->links() }}
+                    </div>
+
                     <table class="table table-striped table-hover" id="list">
                         <thead>
                           <tr>
