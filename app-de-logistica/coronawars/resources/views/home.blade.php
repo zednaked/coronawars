@@ -8,9 +8,16 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{__('Make your own mask')}}</h5>
-                <p class="card-text">{{__('Below you can find two molds for your masks, the kids and adult versions. Print it and make your own mask')}}</p>
+                <p class="card-text">{{__('Below you can find three molds for your masks, the kids and adult versions, and also molds similar to surgical masks. Print it and make your own mask')}}</p>
+                <div class="btn-group">
                 <a target="_blank" href="https://github.com/zednaked/coronawars/raw/master/molde%20mascara%20coronavirus%20KIDS.pdf" class="btn btn-primary">{{__('Kids version')}}</a>
-                <a target="_blank" href="https://github.com/zednaked/coronawars/raw/master/molde%20mascara%20coronavirus.pdf" class="btn btn-primary">{{__('Adult version')}}</a>                    
+                <a target="_blank" href="https://github.com/zednaked/coronawars/raw/master/molde%20mascara%20coronavirus.pdf" class="btn btn-primary">{{__('Adult version')}}</a>
+                </div>
+                <br/><br/>
+                <div class="btn-group">
+                    <a target="_blank" href="https://github.com/zednaked/coronawars/raw/master/molde%20mascara%20coronavirus%20-%20reta.pdf" class="btn btn-primary">{{__('Surgical version')}}</a>
+                </div>
+                                    
               </div>
             </div>
             <br/>
