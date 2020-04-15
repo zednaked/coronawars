@@ -53,9 +53,9 @@
                           <tr @if(isset($highlight) && $request->id == $highlight) class="bg-danger" @endif>
                               <td class="align-middle d-print-none">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                  @if($request->conciliations()->sum('masks_received') != $request->masks_cut)
                                   <a href="{{route('get-supply-request',['id'=>$request->id])}}" class="btn btn-light" data-toggle="tooltip" title="{{__('Edit')}}"><i class="fa fa-pencil"></i></a>
                                   <a onclick="return confirm('{{__('Are you sure?')}}');" data-toggle="tooltip" href="{{route('delete-supply-request',['id'=>$request->id])}}" class="btn btn-danger" title="{{__('Delete')}}"><i class="fa fa-trash"></i></a>
+                                  @if($request->conciliations()->sum('masks_received') != $request->masks_cut)
                                   @if($request->delivered_at==NULL)
                                   <a onclick="return confirm('{{__('Are you sure?')}}');" href="{{route('supply-request-mark-as-delivered',['id'=>$request->id])}}" class="btn btn-default" data-toggle="tooltip" title="{{__('Mark as delivered')}}"><i class="fa fa-truck"></i></a>
                                   @elseif($request->conciliations()->sum('masks_received') != $request->masks_cut)
